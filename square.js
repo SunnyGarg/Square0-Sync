@@ -1,9 +1,9 @@
 const axios = require("axios");
 require("dotenv").config();
-const { SQUARE_ACCESS_TOKEN, LOCATION_ID } = process.env;
+const { SQUARE_ACCESS_TOKEN, LOCATION_ID, SQUARE_URL } = process.env;
 
 const createSquareOrder = async (order) => {
-  const url = `https://connect.squareupsandbox.com/v2/orders`;
+  const url = `${SQUARE_URL}`;
   const headers = {
     Authorization: `Bearer ${SQUARE_ACCESS_TOKEN}`,
     "Content-Type": "application/json",
