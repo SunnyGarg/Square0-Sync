@@ -8,7 +8,6 @@ const createSquareOrder = async (order) => {
     Authorization: `Bearer ${SQUARE_ACCESS_TOKEN}`,
     "Content-Type": "application/json",
   };
-    //console.log("Woocommerce order: "+ JSON.stringify(order, null, "  "));
 
   var address={};
   address['address_line_1'] = order.billing.address_1;
