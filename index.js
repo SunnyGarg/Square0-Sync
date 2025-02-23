@@ -2,12 +2,20 @@ const express = require("express");
 const { fetchOrders } = require("./woocommerce");
 const { fetchSingleOrder } = require("./woocommerce");
 const { createSquareOrder } = require("./square");
+const https = require('https');
+const fs = require('fs');
 require("dotenv").config();
 const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
+
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/amirthacurrybar.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/amirthacurrybar.com/fullchain.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/amirthacurrybar.com/fullchain.pem'),
+};
 
 app.post("/get-orders", (req, res) => {
     console.log('Env: ' + process.env.ENV_VARIABLE)
@@ -22,6 +30,11 @@ app.post("/get-orders", (req, res) => {
       }
 });
 
-app.listen(PORT, () => {
+https.createServer(options, app).listen(3001, () => {
+    console.log("Server running on https://yourdomain.com:3001");
+});
+
+/*app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+*/
