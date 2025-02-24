@@ -33,6 +33,7 @@ const createSquareOrder = async (order) => {
   const squareOrder = {
     order: {
       location_id: LOCATION_ID,
+      state: 'OPEN',
       customer_id: order.customer_id.toString(),
       reference_id: order.transaction_id.toString(),
       line_items: order.line_items.map((item) => ({

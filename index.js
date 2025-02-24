@@ -33,8 +33,3 @@ app.post("/get-orders", (req, res) => {
 https.createServer(options, app).listen(3001, () => {
     console.log("Server running on https://yourdomain.com:3001");
 });
-
-/*app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-*/
